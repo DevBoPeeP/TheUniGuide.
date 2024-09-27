@@ -147,16 +147,23 @@ hr {
   }
 }
 
-@media (max-width: 460px) {
+@media screen and (max-width: 460px) {
+  .facebook-page {
+    font-size: 20px;
+  }
+
   .facebook-page h1 {
-    font-size: 3.5rem;
+    font-size: 25px;
   }
 
   .facebook-page p {
-    font-size: 1.3rem;
+    font-size: 15px;
   }
 
   form {
     padding: 15px;
+  }
+  .copyright {
+    font-size: 16px;
   }
 }

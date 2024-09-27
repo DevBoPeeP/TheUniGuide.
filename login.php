@@ -10,7 +10,7 @@
     .message p {
       color: red;
       /* or any color you prefer for error messages */
-      font-size: 16px;
+      font-size: 4vw;
       margin-bottom: 4px;
     }
   </style>
@@ -44,7 +44,13 @@
               $row = $result->fetch_assoc();
               if (password_verify($password, $row['password'])) {
                 $_SESSION['user_id'] = $row['id'];
-                header("Location: Mainpage.php");
+
+                if ($row['user_type'] == 'student') {
+                  header("Location: student/Mainpage.php");
+                  exit();
+                } else if ($row['user_type'] == 'university') {
+                  header("Location: University/Mainpage.php");
+                }
                 exit();
               } else {
                 echo "<p>Invalid email or password.</p>";
@@ -63,10 +69,14 @@
         </div>
         <hr>
         <div class="button">
-          <a href="register.php">Register</a>
+          <a href="./register/index.php">Register</a>
         </div>
       </form>
     </div>
+  </div>
+
+  <div class="copyright" style="background-color:#304674;color:white;">
+    &copy; 2024 TheUniGuide. All rights reserved.
   </div>
 </body>
 
