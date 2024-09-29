@@ -83,10 +83,9 @@
             background-color: skyblue;
         }
 
-        @media screen and(max-width:460px) {
+        @media screen and (max-width:460px) {
             .facebook-page {
                 font-size: 20px;
-                background-color: red;
             }
 
             .facebook-page h1 {
@@ -102,6 +101,12 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .flex {
+                display: flex;
+                align-items: center;
+                flex-direction: column;
             }
         }
     </style>
@@ -122,7 +127,7 @@
                 </button>
                 <button>
                     <i class="fa-solid fa-school" style="color: #5a8add;"></i>
-                    <a href="./university.php">University</a>
+                    <a href="./school.php">University</a>
                 </button>
                 </>
 

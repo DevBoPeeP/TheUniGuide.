@@ -10,7 +10,7 @@
     .message p {
       color: red;
       /* or any color you prefer for error messages */
-      font-size: 16px;
+      font-size: 10px;
       margin-top: 4px;
     }
 
@@ -64,10 +64,11 @@
     <div class="facebook-page flex">
       <div class="text">
         <h1 style="font-size: 50px;">TheUniGuide</h1>
-        <p>"Your Compass for Academic Success." </p>
+        <p>"Your Compass for </p>
+        <p>Academic Success."</p>
       </div>
 
-      <form id="registrationForm" method="POST" action="register.php">
+      <form id="registrationForm" method="POST" action="student.php">
         <input type="text" name="full_name" placeholder="Full Name" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" id="password" placeholder="Password" required>
@@ -112,14 +113,18 @@
         <div class="message">
           <?php
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            include 'db.php';
+            include '../db.php';
 
             $full_name = $conn->real_escape_string($_POST['full_name']);
             $email = $conn->real_escape_string($_POST['email']);
             $password = $conn->real_escape_string($_POST['password']);
             $confirm_password = $conn->real_escape_string($_POST['confirm_password']);
-            $department = $conn->real_escape_string($_POST['department']);
+            $institution = $conn->real_escape_string($_POST['institution']);
+            $faculty = $conn->real_escape_string($_POST['faculty']);
             $gender = $conn->real_escape_string($_POST['gender']);
+            $user_type = 'student'
+            ;
+
 
             // Check if email already exists
             $checkEmail = "SELECT email FROM users WHERE email='$email'";
@@ -133,12 +138,14 @@
               } else {
                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                $sql = "INSERT INTO users (full_name, email, password, department, gender) VALUES ('$full_name', '$email', '$hashed_password', '$department', '$gender')";
+                $sql = "INSERT INTO users (full_name, email, password, institution,faculty, gender,user_type) VALUES ('$full_name', '$email', '$hashed_password','$institution', '$faculty', '$gender','$user_type')";
 
                 if ($conn->query($sql) === TRUE) {
                   echo "<p>Registration successful!</p>";
+                  header("Location: ../login.php");
                 } else {
                   echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
+
                 }
               }
             }
@@ -157,7 +164,7 @@
     &copy; 2024 TheUniGuide. All rights reserved.
   </div>
 
-  <script src="../script.js"></script>
+  <script src="script.js"></script>
 
 
 

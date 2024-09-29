@@ -10,7 +10,7 @@
         .message p {
             color: red;
             /* or any color you prefer for error messages */
-            font-size: 16px;
+            font-size: 10px;
             margin-top: 4px;
         }
 
@@ -50,7 +50,7 @@
                 <p> Higher Learning."</p>
 
             </div>
-            <form id="registrationForm" method="POST" action="register.php">
+            <form id="registrationForm" method="POST" action="school.php">
                 <input type="text" name="school_name" placeholder="University Name" required>
                 <input type="email" name="email" placeholder="Email" required>
                 <input type="password" name="password" id="password" placeholder="Password" required>
@@ -64,17 +64,19 @@
                 <div class="message">
                     <?php
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                        include 'db.php';
+                        include '../db.php';
 
-                        $full_name = $conn->real_escape_string($_POST['full_name']);
+                        $school_name = $conn->real_escape_string($_POST['school_name']);
                         $email = $conn->real_escape_string($_POST['email']);
                         $password = $conn->real_escape_string($_POST['password']);
                         $confirm_password = $conn->real_escape_string($_POST['confirm_password']);
-                        $department = $conn->real_escape_string($_POST['department']);
+                        $user_type = 'university'
+                        ;
+
 
 
                         // Check if email already exists
-                        $checkEmail = "SELECT email FROM users WHERE email='$email'";
+                        $checkEmail = "SELECT email FROM schools WHERE email='$email'";
                         $result = $conn->query($checkEmail);
 
                         if ($result->num_rows > 0) {
@@ -85,10 +87,11 @@
                             } else {
                                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                                $sql = "INSERT INTO users (full_name, email, password, department, gender) VALUES ('$full_name', '$email', '$hashed_password', '$department', '$gender')";
+                                $sql = "INSERT INTO schools (school_name, email, password,user_type) VALUES ('$school_name', '$email', '$hashed_password','$user_type')";
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo "<p>Registration successful!</p>";
+                                    header("Location: ../login.php");
                                 } else {
                                     echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
                                 }

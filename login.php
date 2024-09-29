@@ -10,7 +10,7 @@
     .message p {
       color: red;
       /* or any color you prefer for error messages */
-      font-size: 4vw;
+      font-size: 10px;
       margin-bottom: 4px;
     }
   </style>
@@ -21,23 +21,27 @@
     <div class="facebook-page flex">
       <div class="text">
         <h1 style="font-size: 50px;">TheUniGuide</h1>
-        <p>Interactive maps to find the </p>
-        <p> next registration spot.</p>
+        <p>"Your Campus, Your Guide </p>
+        <p>Discover, Navigate, Thrive"</p>
       </div>
-      <form method="POST" action="index.php">
+      <form method="POST" action="login.php">
 
         <input type="email" name="email" placeholder="Email or phone number" required>
         <input type="password" name="password" placeholder="Password" required>
         <div class="message">
           <?php
-          session_start();
+          if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+          }
+
           if ($_SERVER["REQUEST_METHOD"] == "POST") {
             include 'db.php';
 
             $email = $conn->real_escape_string($_POST['email']);
             $password = $conn->real_escape_string($_POST['password']);
 
-            $sql = "SELECT id, password FROM users WHERE email='$email'";
+
+            $sql = "SELECT id, password, user_type FROM users WHERE email='$email'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
@@ -45,13 +49,19 @@
               if (password_verify($password, $row['password'])) {
                 $_SESSION['user_id'] = $row['id'];
 
-                if ($row['user_type'] == 'student') {
-                  header("Location: student/Mainpage.php");
-                  exit();
-                } else if ($row['user_type'] == 'university') {
-                  header("Location: University/Mainpage.php");
+                switch ($row['user_type']) {
+                  case 'student':
+                    header("Location: ./student/Mainpage.php");
+                    exit();
+                  case 'university':
+                    header("Location: ./University/Mainpage.php");
+                    exit();
+
+                  default:
+                    // Handle unknown user types if necessary
+                    header("Location: error_page.php");
+                    exit();
                 }
-                exit();
               } else {
                 echo "<p>Invalid email or password.</p>";
               }

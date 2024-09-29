@@ -51,7 +51,7 @@ document
     }
 
     // Using the existing element with the faculties as options
-    document.getElementById("facultySelect").innerHTML = "";
+    document.getElementById("facultySelect").innerHTML = "LASU";
 
     for (let i = 0; i < faculties.length; i++) {
       const option = document.createElement("option");
