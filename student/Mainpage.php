@@ -283,8 +283,8 @@ if (!isset($_SESSION['user_id'])) {
             <label class="logo">TheUniGuide</label>
             <ul>
 
-                <li><a href="change-pass.php">Change Password</a></li>
-                <li><a href="logout.php">Log Out</a></li>
+                <li><a href="../change-pass.php">Change Password</a></li>
+                <li><a href="../logout.php">Log Out</a></li>
             </ul>
         </nav>
     </div>
@@ -294,9 +294,9 @@ if (!isset($_SESSION['user_id'])) {
                 <input type="checkbox" name="accordion-2" id="rd2">
                 <label for="rd2" class="tab__label">Medical Clearance</label>
                 <div class="tab__content">
-                    <p>Please visit the school clinic with four passport-sized photographs, all necessary documents, and
-                        knowledge of your medical history, including your blood group and genotype.</p>
-                    <a href="https://www.google.com/maps?q=6.465386593526259,3.1991116736664256" target="_blank">
+                    <p>Please visit the school clinic with four passport-sized photographs</p>
+                    <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.8972765048525!2d3.199111673666418!3d6.465386593526266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b869441a21269%3A0x7ca9986f9c55a8cf!2sLasu%20Health%20Center!5e1!3m2!1sen!2sng!4v1727667035805!5m2!1sen!2sng"
+                        target="_blank">
                         <button>
                             <span>Visit Map</span>
                         </button>
@@ -323,11 +323,14 @@ if (!isset($_SESSION['user_id'])) {
                 <input type="checkbox" name="accordion-2" id="rd4">
                 <label for="rd4" class="tab__label">Faculty Clearance</label>
                 <div class="tab__content">
-                    <p>Opposite the new horizons building is the student affairs center. Please go to the Student
-                        Affairs Office with approximately four passport-sized photographs and any necessary documents to
-                        complete forms such as the Anti-Cultism Form and the Student Affairs Unit Form.</p>
-                    <a
-                        href="https://www.google.com/maps/place/New+Horizons,+Bells+University/@6.6844462,3.1744035,20.14z/data=!4m14!1m7!3m6!1s0x103b9f18220d3a6f:0x5890700b058ee8fa!2sNew+Horizons,+Bells+University!8m2!3d6.6844965!4d3.1747514!16s%2Fg%2F11hf1b77h0!3m5!1s0x103b9f18220d3a6f:0x5890700b058ee8fa!8m2!3d6.6844965!4d3.1747514!16s%2Fg%2F11hf1b77h0?authuser=0&entry=ttu">
+                    <p>Please go to the faculty office with the following documents;
+                        Minimum four passport photographs, JAMB Addmission letter, JAMB result, O' Level result,
+                        Attestation
+                        letter,Lasu screening result,anti cultism oath form,profile folder.
+                    </p>
+                    <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12347.567125383011!2d3.1815945791023417!3d6.466286567438156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b86967059d5bd%3A0x5e6dc029dd805d6a!2sFaculty%20Of%20Science!5e1!3m2!1sen!2sng!4v1727666578035!5m2!1sen!2sng"
+                        target="blank">
+
                         <button>
                             <span>Visit Map</span>
                         </button>
@@ -340,16 +343,17 @@ if (!isset($_SESSION['user_id'])) {
                 <input type="checkbox" name="accordion-2" id="rd5">
                 <label for="rd5" class="tab__label">Departmental Clearance</label>
                 <div class="tab__content">
-                    <p>Please go to your department with copies of the following documents: Admission Letter, Medical
-                        Clearance, Hostel Clearance, all payment receipts, JAMB result, O' Level result, Birth
-                        Certificate, Student Information Form, Student Affairs Unit Form, Anti-Cultism Form, and four
-                        passport photographs. Additionally, be prepared to pay the departmental fee, which is a maximum
-                        of #10,000. You will receive the account details from your department.</p>
-                    <a href="">
-                        <button>
-                            <span>Visit Map</span>
-                        </button>
-                    </a>
+                    <>Minimum four passport photographs, JAMB Addmission letter, JAMB result, O' Level result,
+                        Attestation
+                        letter,Lasu screening result,anti cultism oath form,profile folder.
+                        Departmental clearance is done at the departmental office.
+                        </p>
+                        <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12347.567125383011!2d3.1815945791023417!3d6.466286567438156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b86967059d5bd%3A0x5e6dc029dd805d6a!2sFaculty%20Of%20Science!5e1!3m2!1sen!2sng!4v1727666578035!5m2!1sen!2sng"
+                            target="blank">
+                            <button>
+                                <span>Visit Map</span>
+                            </button>
+                        </a>
                 </div>
             </div>
 

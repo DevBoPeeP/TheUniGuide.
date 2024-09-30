@@ -24,7 +24,7 @@
         <p>"Your Campus, Your Guide </p>
         <p>Discover, Navigate, Thrive"</p>
       </div>
-      <form method="POST" action="login.php">
+      <form method="POST" action="">
 
         <input type="email" name="email" placeholder="Email or phone number" required>
         <input type="password" name="password" placeholder="Password" required>
@@ -40,13 +40,17 @@
             $email = $conn->real_escape_string($_POST['email']);
             $password = $conn->real_escape_string($_POST['password']);
 
-
             $sql = "SELECT id, password, user_type FROM users WHERE email='$email'";
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
               $row = $result->fetch_assoc();
+
+              echo "<script>alert('Email found: " . htmlspecialchars($email) . "');</script>";
+
               if (password_verify($password, $row['password'])) {
+                echo "<script>alert('Password found: " . htmlspecialchars($row['password']) . "');</script>";
+
                 $_SESSION['user_id'] = $row['id'];
 
                 switch ($row['user_type']) {
@@ -56,26 +60,23 @@
                   case 'university':
                     header("Location: ./University/Mainpage.php");
                     exit();
-
                   default:
-                    // Handle unknown user types if necessary
                     header("Location: error_page.php");
                     exit();
                 }
               } else {
-                echo "<p>Invalid email or password.</p>";
+                echo "<script>alert('Password Not Found');</script>";
               }
             } else {
-              echo "<p>Invalid email or password.</p>";
+              echo "<script>alert('Email Not Found');</script>";
             }
-
             $conn->close();
           }
           ?>
         </div>
         <div class="link">
           <button type="submit" class="login">Login</button>
-          <a href="#" class="forgot">Forgot password?</a>
+          <a href="./change-pass.php" class="forgot">Forgot password?</a>
         </div>
         <hr>
         <div class="button">

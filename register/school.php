@@ -66,7 +66,7 @@
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         include '../db.php';
 
-                        $school_name = $conn->real_escape_string($_POST['school_name']);
+                        $full_name = $conn->real_escape_string($_POST['school_name']);
                         $email = $conn->real_escape_string($_POST['email']);
                         $password = $conn->real_escape_string($_POST['password']);
                         $confirm_password = $conn->real_escape_string($_POST['confirm_password']);
@@ -76,7 +76,7 @@
 
 
                         // Check if email already exists
-                        $checkEmail = "SELECT email FROM schools WHERE email='$email'";
+                        $checkEmail = "SELECT email FROM users WHERE email='$email'";
                         $result = $conn->query($checkEmail);
 
                         if ($result->num_rows > 0) {
@@ -87,7 +87,7 @@
                             } else {
                                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-                                $sql = "INSERT INTO schools (school_name, email, password,user_type) VALUES ('$school_name', '$email', '$hashed_password','$user_type')";
+                                $sql = "INSERT INTO users (full_name, email, password, user_type) VALUES ('$full_name', '$email', '$hashed_password','$user_type')";
 
                                 if ($conn->query($sql) === TRUE) {
                                     echo "<p>Registration successful!</p>";

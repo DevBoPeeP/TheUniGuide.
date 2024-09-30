@@ -77,26 +77,37 @@
         <select name="institution" id="institutionselect" required>
           <option value="" disabled selected>Select Higher Institution</option>
           <option value="LASU">Lagos State University</option>
+          <option value="OTHER">Other Institution</option>
         </select>
-
-
 
         <select name="faculty" id="facultySelect" required>
           <option value="" disabled selected>Select Faculty/School/College</option>
-          <option value="COM[BMS]">College of Medicine[Basic medical sciences]</option>
-          <option value="COM[DENTISTRY]">College of Medicine[Dentistry]</option>
-          <option value="FOA">Faculty of Arts</option>
-          <option value="FOL">Faculty of Law</option>
-          <option value="FOS">Faculty of Sciences</option>
-          <option value="FOC">Faculty of Communication</option>
-          <option value="FOEd">Faculty of Education</option>
-          <option value="FSS">Faculty of Social Sciences</option>
-          <option value="FMS">Faculty of Management Sciences</option>
-          <option value="FOE">Faculty of Engeneering</option>
-          <option value="FCS">Faculty of Clinical Sciences</option>
-          <option value="SCA">School of Agriculture</option>
-          <option value="SCT">School of transport</option>
+
         </select>
+
+        <!-- <select name="institution" id="institutionselect" required>
+                    <option value="" disabled selected>Select Higher Institution</option>
+                    <option value="LASU">Lagos State University</option>
+                </select>
+
+
+
+                <select name="faculty" id="facultySelect" required>
+                    <option value="" disabled selected>Select Faculty/School/College</option>
+                    <option value="COM[BMS]">College of Medicine[Basic medical sciences]</option>
+                    <option value="COM[DENTISTRY]">College of Medicine[Dentistry]</option>
+                    <option value="FOA">Faculty of Arts</option>
+                    <option value="FOL">Faculty of Law</option>
+                    <option value="FOS">Faculty of Sciences</option>
+                    <option value="FOC">Faculty of Communication</option>
+                    <option value="FOEd">Faculty of Education</option>
+                    <option value="FSS">Faculty of Social Sciences</option>
+                    <option value="FMS">Faculty of Management Sciences</option>
+                    <option value="FOE">Faculty of Engeneering</option>
+                    <option value="FCS">Faculty of Clinical Sciences</option>
+                    <option value="SCA">School of Agriculture</option>
+                    <option value="SCT">School of transport</option>
+                </select> -->
 
 
         Gender:
@@ -122,8 +133,7 @@
             $institution = $conn->real_escape_string($_POST['institution']);
             $faculty = $conn->real_escape_string($_POST['faculty']);
             $gender = $conn->real_escape_string($_POST['gender']);
-            $user_type = 'student'
-            ;
+            $user_type = 'student';
 
 
             // Check if email already exists
@@ -141,11 +151,10 @@
                 $sql = "INSERT INTO users (full_name, email, password, institution,faculty, gender,user_type) VALUES ('$full_name', '$email', '$hashed_password','$institution', '$faculty', '$gender','$user_type')";
 
                 if ($conn->query($sql) === TRUE) {
-                  echo "<p>Registration successful!</p>";
                   header("Location: ../login.php");
+                  echo "<p>Registration successful!</p>";
                 } else {
                   echo "<p>Error: " . $sql . "<br>" . $conn->error . "</p>";
-
                 }
               }
             }
@@ -164,6 +173,77 @@
     &copy; 2024 TheUniGuide. All rights reserved.
   </div>
 
+  <script>
+    const institutionSelect = document.getElementById('institutionselect');
+    const facultySelect = document.getElementById('facultySelect');
+
+    const faculties = [{
+      value: "COM[BMS]",
+      text: "College of Medicine[Basic Medical Sciences]"
+    },
+    {
+      value: "COM[DENTISTRY]",
+      text: "College of Medicine[Dentistry]"
+    },
+    {
+      value: "FOA",
+      text: "Faculty of Arts"
+    },
+    {
+      value: "FOL",
+      text: "Faculty of Law"
+    },
+    {
+      value: "FOS",
+      text: "Faculty of Sciences"
+    },
+    {
+      value: "FOC",
+      text: "Faculty of Communication"
+    },
+    {
+      value: "FOEd",
+      text: "Faculty of Education"
+    },
+    {
+      value: "FSS",
+      text: "Faculty of Social Sciences"
+    },
+    {
+      value: "FMS",
+      text: "Faculty of Management Sciences"
+    },
+    {
+      value: "FOE",
+      text: "Faculty of Engineering"
+    },
+    {
+      value: "FCS",
+      text: "Faculty of Clinical Sciences"
+    },
+    {
+      value: "SCA",
+      text: "School of Agriculture"
+    },
+    {
+      value: "SCT",
+      text: "School of Transport"
+    }
+    ];
+
+    institutionSelect.addEventListener('change', function () {
+      facultySelect.innerHTML = '<option value="" disabled selected>Select Faculty/School/College</option>';
+
+      if (this.value === 'LASU') {
+        faculties.forEach(faculty => {
+          const option = document.createElement('option');
+          option.value = faculty.value;
+          option.textContent = faculty.text;
+          facultySelect.appendChild(option);
+        });
+      }
+    });
+  </script>
   <script src="script.js"></script>
 
 

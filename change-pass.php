@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </form>
   </div>
 
-  <div class="copyright">
+  <div class="copyright" style="background-color:#304674;color:white;">
     &copy; 2024 TheUniGuide. All rights reserved.
   </div>
 </body>
